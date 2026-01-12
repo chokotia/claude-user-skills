@@ -12,6 +12,30 @@
 
 このリポジトリを任意の場所にクローンします（例: `~/src/claude-user-skills`）。
 
+### 初回セットアップ（グローバルgitignoreの設定）
+
+共有スキルをgitの追跡対象から除外するため、**初回のみ**グローバルgitignoreの設定が必要です。
+
+> **Note**: スキルが増えた場合は、グローバルgitignoreにも追加が必要です。
+
+#### Windows (PowerShell)
+```powershell
+# グローバルgitignoreのパスを設定（未設定の場合）
+git config --global core.excludesfile "$env:USERPROFILE\.gitignore_global"
+
+# 各スキルを追加
+Add-Content -Path "$env:USERPROFILE\.gitignore_global" -Value ".claude/skills/commit"
+```
+
+#### Linux / Mac
+```bash
+# グローバルgitignoreのパスを設定（未設定の場合）
+git config --global core.excludesfile ~/.gitignore_global
+
+# 各スキルを追加
+echo ".claude/skills/commit" >> ~/.gitignore_global
+```
+
 ### 各プロジェクトへの適用
 
 各プロジェクトのルートディレクトリで、以下のコマンドを実行してシンボリックリンクを作成します。
